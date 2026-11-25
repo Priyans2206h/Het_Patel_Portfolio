@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Het Patel Portfolio</title>
+<meta name="description" content="Het Patel, student and Smart India Hackathon 2026 participant with Team Zeta. AI and C programming.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap" rel="stylesheet">
+<style>
+/* Layout idea: a printed engineering notebook. Left-aligned, ruled lines, mono labels, one saffron accent. */
+:root {
+  --paper: #f5f6f8;
+  --surface: #ffffff;
+  --ink: #14213d;
+  --muted: #55607a;
+  --line: #d6dae3;
+  --accent: #d9480f;
+  --accent-soft: #fdeee6;
+  --display: "Fraunces", Georgia, "Times New Roman", serif;
+  --body: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  color-scheme: light;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--body);
+  font-size: 17px;
+  line-height: 1.6;
+  background-image: linear-gradient(var(--line) 1px, transparent 1px);
+  background-size: 100% 32px;
+  background-attachment: local;
+}
+a { color: inherit; }
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+.wrap { max-width: 1040px; margin: 0 auto; padding: 0 20px; }
+
+/* top bar */
+header.bar { background: var(--paper); border-bottom: 2px solid var(--ink); position: sticky; top: 0; z-index: 5; }
+.bar .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; min-height: 56px; flex-wrap: wrap; padding-top: 8px; padding-bottom: 8px; }
+.logo { font-family: var(--mono); font-weight: 600; text-decoration: none; letter-spacing: .02em; }
+.logo span { color: var(--accent); }
+nav { display: flex; gap: 18px; flex-wrap: wrap; font-family: var(--mono); font-size: 14px; }
+nav a { text-decoration: none; padding: 4px 0; border-bottom: 2px solid transparent; }
+nav a:hover { border-bottom-color: var(--accent); }
+
+/* hero */
+.hero { padding: 56px 0 48px; }
+.hero .wrap { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 40px; align-items: center; }
+.tag { font-family: var(--mono); font-size: 13px; letter-spacing: .08em; text-transform: uppercase; color: var(--accent); margin: 0 0 14px; }
+h1 { font-family: var(--display); font-weight: 700; font-size: clamp(2.6rem, 7vw, 4.6rem); line-height: 1.02; margin: 0 0 18px; text-wrap: balance; }
+.lede { font-size: 1.15rem; max-width: 34em; margin: 0 0 26px; color: var(--muted); }
+.lede strong { color: var(--ink); font-weight: 600; }
+.actions { display: flex; flex-wrap: wrap; gap: 12px; }
+.btn { display: inline-flex; align-items: center; gap: 8px; font-family: var(--mono); font-size: 14px; font-weight: 500; text-decoration: none; padding: 12px 18px; border: 2px solid var(--ink); border-radius: 6px; background: var(--surface); box-shadow: 4px 4px 0 var(--ink); transition: transform .12s, box-shadow .12s; cursor: pointer; }
+.btn:hover { transform: translate(2px, 2px); box-shadow: 2px 2px 0 var(--ink); }
+.btn.primary { background: var(--accent); border-color: var(--ink); color: #fff; }
+
+.code { background: var(--ink); color: #e8ecf5; border-radius: 8px; padding: 18px 20px; font-family: var(--mono); font-size: 14px; line-height: 1.7; box-shadow: 6px 6px 0 var(--accent); overflow-x: auto; }
+.code .bar-dots { display: flex; gap: 6px; margin-bottom: 12px; }
+.code .bar-dots i { width: 10px; height: 10px; border-radius: 50%; background: #3c4a6b; display: block; }
+.code pre { margin: 0; white-space: pre; }
+.c-k { color: #ffa94d; } .c-s { color: #8ce99a; } .c-c { color: #8e9ab8; }
+
+/* sections */
+section { padding: 52px 0; border-top: 2px solid var(--ink); background: var(--paper); }
+.sec-head { display: flex; align-items: baseline; gap: 14px; margin-bottom: 26px; flex-wrap: wrap; }
+.sec-head .no { font-family: var(--mono); font-size: 13px; color: var(--accent); font-weight: 600; }
+h2 { font-family: var(--display); font-size: clamp(1.7rem, 4vw, 2.3rem); margin: 0; line-height: 1.15; text-wrap: balance; }
+.about-grid { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: 40px; }
+.about-grid p { margin: 0 0 16px; max-width: 62ch; }
+.facts { background: var(--surface); border: 2px solid var(--ink); border-radius: 8px; padding: 20px 22px; align-self: start; }
+.facts dl { margin: 0; display: grid; gap: 14px; }
+.facts dt { font-family: var(--mono); font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.facts dd { margin: 2px 0 0; font-weight: 500; }
+
+/* highlight */
+.highlight { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr); gap: 32px; align-items: center; background: var(--surface); border: 2px solid var(--ink); border-radius: 10px; padding: 24px; box-shadow: 6px 6px 0 var(--ink); }
+.highlight h3 { font-family: var(--display); font-size: 1.6rem; margin: 6px 0 10px; line-height: 1.2; }
+.highlight p { margin: 0 0 14px; color: var(--muted); }
+.pill { display: inline-block; font-family: var(--mono); font-size: 12px; font-weight: 500; padding: 4px 10px; border-radius: 999px; background: var(--accent-soft); color: #9c3408; border: 1px solid #f3c3a8; margin: 0 6px 6px 0; }
+.thumb { display: block; width: 100%; padding: 0; border: 2px solid var(--line); border-radius: 6px; background: var(--surface); cursor: zoom-in; overflow: hidden; }
+.thumb img { display: block; width: 100%; height: auto; }
+.thumb:hover { border-color: var(--accent); }
+.cert .thumb img { aspect-ratio: 5 / 4; object-fit: contain; background: #eef1f5; }
+
+/* certs */
+.cert-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; margin-top: 24px; }
+.cert { background: var(--surface); border: 2px solid var(--ink); border-radius: 10px; padding: 16px; display: flex; flex-direction: column; gap: 14px; }
+.cert h3 { font-size: 1.1rem; margin: 0; font-weight: 600; line-height: 1.3; }
+.meta { font-family: var(--mono); font-size: 13px; color: var(--muted); margin: 0; }
+
+/* education + skills */
+.two { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
+.score { background: var(--surface); border: 2px solid var(--ink); border-radius: 10px; padding: 22px; }
+.score .big { font-family: var(--display); font-weight: 700; font-size: 3.4rem; line-height: 1; font-variant-numeric: tabular-nums; }
+.score .big small { font-size: 1.4rem; color: var(--muted); }
+.score p { margin: 8px 0 14px; font-family: var(--mono); font-size: 13px; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
+.meter { height: 10px; background: var(--line); border-radius: 999px; overflow: hidden; }
+.meter i { display: block; height: 100%; background: var(--accent); border-radius: 999px; }
+.skills { display: flex; flex-wrap: wrap; gap: 10px; margin: 0; padding: 0; list-style: none; }
+.skills li { font-family: var(--mono); font-size: 14px; padding: 8px 14px; background: var(--surface); border: 2px solid var(--ink); border-radius: 6px; }
+
+/* contact */
+.contact { text-align: left; }
+.contact p { max-width: 50ch; margin: 0 0 22px; color: var(--muted); }
+footer { border-top: 2px solid var(--ink); padding: 22px 0 40px; font-family: var(--mono); font-size: 13px; color: var(--muted); background: var(--paper); }
+
+/* lightbox */
+dialog.lb { border: 0; padding: 0; background: transparent; max-width: min(94vw, 1100px); width: 100%; }
+dialog.lb::backdrop { background: rgba(20, 33, 61, .82); }
+dialog.lb img { display: block; width: 100%; height: auto; border-radius: 8px; background: #fff; }
+dialog.lb button { position: absolute; top: -44px; right: 0; font-family: var(--mono); background: var(--surface); border: 2px solid var(--ink); border-radius: 6px; padding: 6px 12px; cursor: pointer; }
+
+@media (max-width: 800px) {
+  .hero { padding-top: 36px; }
+  .hero .wrap, .about-grid, .highlight, .cert-grid, .two { grid-template-columns: minmax(0, 1fr); }
+  .hero .wrap { gap: 32px; }
+  body { font-size: 16px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .btn { transition: none; }
+}
+</style>
+</head>
+<body>
+
+<header class="bar">
+  <div class="wrap">
+    <a class="logo" href="#top">het<span>.</span>patel</a>
+    <nav aria-label="Sections">
+      <a href="#about">About</a>
+      <a href="#hackathon">Hackathon</a>
+      <a href="#certificates">Certificates</a>
+      <a href="#education">Education</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <div class="hero">
+    <div class="wrap">
+      <div>
+        <p class="tag">Student · Gujarat, India</p>
+        <h1>Het Patel</h1>
+        <p class="lede">I build things in <strong>C</strong> and study how <strong>machines learn</strong>. In September 2026 my team, Zeta, was nominated among the top 100 teams at Karnavati University for the Smart India Hackathon.</p>
+        <div class="actions">
+          <a class="btn primary" href="https://www.linkedin.com/in/het-patel-bb059b432" rel="noopener">View LinkedIn &rarr;</a>
+          <a class="btn" href="#certificates">See certificates</a>
+        </div>
+      </div>
+      <div class="code" role="img" aria-label="A short C program that prints Het Patel's name">
+        <div class="bar-dots" aria-hidden="true"><i></i><i></i><i></i></div>
+<pre><span class="c-k">#include</span> <span class="c-s">&lt;stdio.h&gt;</span>
+
+<span class="c-k">int</span> main(<span class="c-k">void</span>) {
+    printf(<span class="c-s">"Hello, I'm Het Patel.\n"</span>);
+    <span class="c-c">/* SIH 2026 · Team Zeta */</span>
+    <span class="c-k">return</span> 0;
+}</pre>
+      </div>
+    </div>
+  </div>
+
+  <section id="about">
+    <div class="wrap">
+      <div class="sec-head"><span class="no">01</span><h2>About</h2></div>
+      <div class="about-grid">
+        <div>
+          <p>I am a student who learns by finishing things. In November 2026 I completed two LinkedIn Learning courses back to back: one on the foundations of artificial intelligence, one on the C programming language.</p>
+          <p>Before that, I took part in the preliminary round of the Smart India Hackathon 2026, the national hackathon run with the Ministry of Education, as a member of Team Zeta.</p>
+          <p>I am interested in AI and machine learning, and I like having a solid grounding in C underneath it.</p>
+        </div>
+        <aside class="facts" aria-label="Quick facts">
+          <dl>
+            <div><dt>Based in</dt><dd>Gujarat, India</dd></div>
+            <div><dt>University</dt><dd>Karnavati University</dd></div>
+            <div><dt>Team</dt><dd>Zeta, Smart India Hackathon 2026</dd></div>
+            <div><dt>Focus</dt><dd>AI foundations, C programming</dd></div>
+          </dl>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <section id="hackathon">
+    <div class="wrap">
+      <div class="sec-head"><span class="no">02</span><h2>Smart India Hackathon 2026</h2></div>
+      <div class="highlight">
+        <div>
+          <span class="pill">Preliminary round</span><span class="pill">Top 100 teams</span><span class="pill">10 &amp; 11 Sep 2026</span>
+          <h3>Certificate of Appreciation</h3>
+          <p>Het Bipinbhai Patel, of Team Zeta, was recognised for contributing to the preliminary round of Smart India Hackathon 2026, held at Karnavati University, Gandhinagar. The team was nominated among the top 100 teams representing the university.</p>
+          <p>Issued by the Karnavati Innovation and Incubation Foundation (KIIF).</p>
+        </div>
+        <button class="thumb" type="button" data-full="img/sih-2026.jpg" data-alt="Smart India Hackathon 2026 certificate of appreciation for Het Bipinbhai Patel, Team Zeta" aria-label="Open the hackathon certificate full size">
+          <img src="img/sih-2026.jpg" alt="Smart India Hackathon 2026 certificate of appreciation for Het Bipinbhai Patel, Team Zeta" loading="lazy">
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <section id="certificates">
+    <div class="wrap">
+      <div class="sec-head"><span class="no">03</span><h2>Certificates</h2></div>
+      <p style="margin:0;max-width:60ch;color:var(--muted)">Two LinkedIn Learning courses, finished two days apart in November 2026. Select a certificate to enlarge it.</p>
+      <div class="cert-grid">
+        <article class="cert">
+          <button class="thumb" type="button" data-full="img/ai-foundations.jpg" data-alt="LinkedIn Learning certificate: Artificial Intelligence Foundations, Thinking Machines, completed by Het Patel" aria-label="Open the AI Foundations certificate full size">
+            <img src="img/ai-foundations.jpg" alt="LinkedIn Learning certificate: Artificial Intelligence Foundations, Thinking Machines, completed by Het Patel" loading="lazy">
+          </button>
+          <h3>Artificial Intelligence Foundations: Thinking Machines</h3>
+          <p class="meta">5 Nov 2026 · 1 h 36 min</p>
+          <div><span class="pill">Machine Learning</span><span class="pill">Artificial Intelligence</span></div>
+        </article>
+        <article class="cert">
+          <button class="thumb" type="button" data-full="img/c-programming.jpg" data-alt="LinkedIn Learning certificate: Complete Guide to C Programming Foundations, completed by Het Patel" aria-label="Open the C Programming certificate full size">
+            <img src="img/c-programming.jpg" alt="LinkedIn Learning certificate: Complete Guide to C Programming Foundations, completed by Het Patel" loading="lazy">
+          </button>
+          <h3>Complete Guide to C Programming Foundations</h3>
+          <p class="meta">7 Nov 2026 · 5 h 52 min</p>
+          <div><span class="pill">C Programming Language</span><span class="pill">Programming Foundations</span></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="education">
+    <div class="wrap">
+      <div class="sec-head"><span class="no">04</span><h2>Education and skills</h2></div>
+      <div class="two">
+        <div class="score">
+          <div class="big">78<small>%</small></div>
+          <p>10th standard</p>
+          <div class="meter" role="img" aria-label="78 percent"><i style="width:78%"></i></div>
+        </div>
+        <div class="score">
+          <div class="big">85<small>%</small></div>
+          <p>12th standard</p>
+          <div class="meter" role="img" aria-label="85 percent"><i style="width:85%"></i></div>
+        </div>
+      </div>
+      <h3 style="font-family:var(--mono);font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:32px 0 12px;font-weight:500">Skills</h3>
+      <ul class="skills">
+        <li>C Programming</li>
+        <li>Programming Foundations</li>
+        <li>Machine Learning</li>
+        <li>Artificial Intelligence</li>
+        <li>Teamwork</li>
+        <li>Problem Solving</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="contact" class="contact">
+    <div class="wrap">
+      <div class="sec-head"><span class="no">05</span><h2>Get in touch</h2></div>
+      <p>The best way to reach me is LinkedIn. Send a message or a connection request and I will reply there.</p>
+      <div class="actions">
+        <a class="btn primary" href="https://www.linkedin.com/in/het-patel-bb059b432" rel="noopener">linkedin.com/in/het-patel-bb059b432</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">Het Patel · Gujarat, India · 2026</div>
+</footer>
+
+<dialog class="lb" id="lb" aria-label="Certificate preview">
+  <button type="button" id="lb-close">Close</button>
+  <img id="lb-img" src="" alt="">
+</dialog>
+
+<script>
+(function () {
+  var dlg = document.getElementById('lb');
+  var img = document.getElementById('lb-img');
+  document.querySelectorAll('.thumb').forEach(function (b) {
+    b.addEventListener('click', function () {
+      img.src = b.getAttribute('data-full');
+      img.alt = b.getAttribute('data-alt') || '';
+      if (dlg.showModal) { dlg.showModal(); } else { dlg.setAttribute('open', ''); }
+    });
+  });
+  document.getElementById('lb-close').addEventListener('click', function () { dlg.close(); });
+  dlg.addEventListener('click', function (e) { if (e.target === dlg) { dlg.close(); } });
+})();
+</script>
+</body>
+</html>
